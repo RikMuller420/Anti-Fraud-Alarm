@@ -5,7 +5,7 @@ public class Alarm : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField, Range(0f, 1f)] private float _maxVolume = 1f;
-    [SerializeField, Min(0.1f)] private float _volumeChangeStep = 0.3f;
+    [SerializeField, Min(0.1f)] private float _volumeChangeSpeed = 0.3f;
 
     private Coroutine _volumeChangeCoroutine;
 
@@ -38,7 +38,7 @@ public class Alarm : MonoBehaviour
     {
         while (_audioSource.volume != tagetVolume)
         {
-            float volumeChangeStep = _volumeChangeStep * Time.deltaTime;
+            float volumeChangeStep = _volumeChangeSpeed * Time.deltaTime;
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, tagetVolume, volumeChangeStep);
 
             yield return null;

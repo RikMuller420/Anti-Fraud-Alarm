@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class FraudMover : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField, Min(1f)] private float _speed = 5f;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.position += transform.forward * _speed * Time.deltaTime;
     }
 }
