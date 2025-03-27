@@ -5,13 +5,17 @@ public class Alarm : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField, Range(0f, 1f)] private float _maxVolume = 1f;
-    [SerializeField, Min(0.1f)] private float _volumeChangeStep = 1f;
+    [SerializeField, Min(0.1f)] private float _volumeChangeStep = 0.3f;
 
     private Coroutine _volumeChangeCoroutine;
 
     public void Activate()
     {
-        _audioSource.Play();
+        if (_audioSource.isPlaying == false)
+        {
+            _audioSource.Play();
+        }
+
         StopVolumeChangeCourutine();
         _volumeChangeCoroutine = StartCoroutine(ChangeSoundVolume(_maxVolume));
     }
