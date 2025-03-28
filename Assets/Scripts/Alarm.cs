@@ -21,14 +21,14 @@ public class Alarm : MonoBehaviour
 
     private void OnEnable()
     {
-        _alarmTrigger.FraudEnterTrigger += Activate;
-        _alarmTrigger.FraudExitTrigger += Deactivate;
+        _alarmTrigger.FraudEntered += Activate;
+        _alarmTrigger.FraudLeft += Deactivate;
     }
 
     private void OnDisable()
     {
-        _alarmTrigger.FraudEnterTrigger -= Activate;
-        _alarmTrigger.FraudExitTrigger -= Deactivate;
+        _alarmTrigger.FraudEntered -= Activate;
+        _alarmTrigger.FraudLeft -= Deactivate;
     }
 
     public void Activate()

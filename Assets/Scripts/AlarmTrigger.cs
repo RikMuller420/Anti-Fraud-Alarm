@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class AlarmTrigger : MonoBehaviour
 {
-    public event Action FraudEnterTrigger;
-    public event Action FraudExitTrigger;
+    public event Action FraudEntered;
+    public event Action FraudLeft;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Fraud>(out _))
         {
-            FraudEnterTrigger?.Invoke();
+            FraudEntered?.Invoke();
         }
     }
 
@@ -18,7 +18,7 @@ public class AlarmTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<Fraud>(out _))
         {
-            FraudExitTrigger?.Invoke();
+            FraudLeft?.Invoke();
         }
     }
 }
