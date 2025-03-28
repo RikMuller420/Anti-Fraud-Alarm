@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 
 public class AlarmTrigger : MonoBehaviour
 {
-    [SerializeField] private Alarm _alarm;
+    public event Action FraudEnterTrigger;
+    public event Action FraudExitTrigger;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Fraud>(out _))
         {
-            _alarm.Activate();
+            FraudEnterTrigger?.Invoke();
         }
     }
 
@@ -16,7 +18,7 @@ public class AlarmTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<Fraud>(out _))
         {
-            _alarm.Deactivate();
+            FraudExitTrigger?.Invoke();
         }
     }
 }

@@ -638,6 +638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 867306237}
+  _alarmTrigger: {fileID: 1824576566}
+  _minVolume: 0
   _maxVolume: 1
   _volumeChangeSpeed: 0.3
 --- !u!4 &1373470644
@@ -854,7 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234c71b271e05d48b00b38af4637c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alarm: {fileID: 1373470643}
 --- !u!65 &1824576567
 BoxCollider:
   m_ObjectHideFlags: 0

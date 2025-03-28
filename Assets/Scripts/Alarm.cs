@@ -4,10 +4,32 @@ using UnityEngine;
 public class Alarm : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AlarmTrigger _alarmTrigger;
+    [SerializeField, Range(0f, 1f)] private float _minVolume = 0f;
     [SerializeField, Range(0f, 1f)] private float _maxVolume = 1f;
     [SerializeField, Min(0.1f)] private float _volumeChangeSpeed = 0.3f;
 
     private Coroutine _volumeChangeCoroutine;
+
+    private void OnValidate()
+    {
+        if (_minVolume > _maxVolume)
+        {
+            _minVolume = _maxVolume;
+        }
+    }
+
+    private void OnEnable()
+    {
+        _alarmTrigger.FraudEnterTrigger += Activate;
+        _alarmTrigger.FraudExitTrigger += Deactivate;
+    }
+
+    private void OnDisable()
+    {
+        _alarmTrigger.FraudEnterTrigger -= Activate;
+        _alarmTrigger.FraudExitTrigger -= Deactivate;
+    }
 
     public void Activate()
     {
